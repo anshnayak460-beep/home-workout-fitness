@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PowerFit Gym Training</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            color: #222;
+        }
+
+        /* Navbar */
+        nav {
+            background: #111;
+            color: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav h2 {
+            color: #ff4d00;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ff4d00;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 90vh;
+            background: linear-gradient(
+                rgba(0,0,0,0.7),
+                rgba(0,0,0,0.7)
+            ),
+            url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .hero-content span {
+            color: #ff4d00;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ff4d00;
+            color: white;
+            padding: 14px 28px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #e63e00;
+        }
+
+        /* Sections */
+        section {
+            padding: 70px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 35px;
+            margin-bottom: 40px;
+        }
+
+        .section-title span {
+            color: #ff4d00;
+        }
+
+        /* Training Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin: 15px 0;
+            color: #ff4d00;
+        }
+
+        .card p {
+            line-height: 1.6;
+        }
+
+        .icon {
+            font-size: 45px;
+        }
+
+        /* Workout Plan */
+        .workout {
+            background: #111;
+            color: white;
+        }
+
+        .workout-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            color: #222;
+        }
+
+        .workout-table th,
+        .workout-table td {
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        .workout-table th {
+            background: #ff4d00;
+            color: white;
+        }
+
+        /* About */
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about img {
+            width: 100%;
+            border-radius: 12px;
+        }
+
+        .about-text h2 {
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        /* Contact */
+        .contact {
+            background: #eee;
+        }
+
+        .contact-box {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 35px;
+            border-radius: 10px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #ff4d00;
+            border: none;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #e63e00;
+        }
+
+        /* Footer */
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        footer span {
+            color: #ff4d00;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-content h1 {
+                font-size: 38px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .workout-table {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <h2>💪 PowerFit</h2>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#training">Training</a></li>
+            <li><a href="#workout">Workout</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- Home -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>Build Your <span>Body</span></h1>
+
+            <p>
+                Train Hard • Stay Strong • Become Better
+            </p>
+
+            <a href="#training" class="btn">
+                Start Training
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Training -->
+    <section id="training">
+
+        <h2 class="section-title">
+            Our <span>Training</span>
+        </h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <div class="icon">🏋️</div>
+
+                <h3>Strength Training</h3>
+
+                <p>
+                    Build muscle and improve your strength
+                    with proper weight training exercises.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <div class="icon">🏃</div>
+
+                <h3>Cardio Training</h3>
+
+                <p>
+                    Improve your stamina and cardiovascular
+                    fitness with running and cardio workouts.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <div class="icon">🔥</div>
+
+                <h3>Fat Loss</h3>
+
+                <p>
+                    Follow effective workouts to burn calories
+                    and improve your overall fitness.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <div class="icon">🧘</div>
+
+                <h3>Flexibility</h3>
+
+                <p>
+                    Improve your flexibility, mobility and
+                    body movement with stretching exercises.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <div class="icon">🥗</div>
+
+                <h3>Nutrition</h3>
+
+                <p>
+                    Learn healthy eating habits that support
+                    your training and fitness goals.
+                </p>
+            </div>
+
+
+            <div class="card">
+                <div class="icon">💪</div>
+
+                <h3>Personal Training</h3>
+
+                <p>
+                    Get personalized guidance from a trainer
+                    according to your fitness goals.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Workout Plan -->
+    <section class="workout" id="workout">
+
+        <h2 class="section-title">
+            Weekly <span>Workout Plan</span>
+        </h2>
+
+        <table class="workout-table">
+
+            <tr>
+                <th>Day</th>
+                <th>Workout</th>
+                <th>Exercises</th>
+            </tr>
+
+            <tr>
+                <td>Monday</td>
+                <td>Chest</td>
+                <td>Push-ups, Bench Press</td>
+            </tr>
+
+            <tr>
+                <td>Tuesday</td>
+                <td>Back</td>
+                <td>Pull-ups, Lat Pulldown</td>
+            </tr>
+
+            <tr>
+                <td>Wednesday</td>
+                <td>Legs</td>
+                <td>Squats, Lunges</td>
+            </tr>
+
+            <tr>
+                <td>Thursday</td>
+                <td>Shoulders</td>
+                <td>Shoulder Press, Lateral Raise</td>
+            </tr>
+
+            <tr>
+                <td>Friday</td>
+                <td>Arms</td>
+                <td>Bicep Curl, Tricep Pushdown</td>
+            </tr>
+
+            <tr>
+                <td>Saturday</td>
+                <td>Full Body</td>
+                <td>Push-ups, Squats, Plank</td>
+            </tr>
+
+            <tr>
+                <td>Sunday</td>
+                <td>Rest</td>
+                <td>Recovery & Stretching</td>
+            </tr>
+
+        </table>
+
+    </section>
+
+
+    <!-- About -->
+    <section id="about">
+
+        <div class="about">
+
+            <img
+                src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=900&q=80"
+                alt="Gym Training"
+            >
+
+            <div class="about-text">
+
+                <h2>About <span>PowerFit</span></h2>
+
+                <p>
+                    Welcome to PowerFit Gym Training. Our goal
+                    is to help people become stronger, healthier
+                    and more confident.
+                </p>
+
+                <p>
+                    We provide strength training, cardio,
+                    flexibility exercises, personal training
+                    and fitness guidance.
+                </p>
+
+                <p>
+                    Remember: consistency is more important
+                    than perfection.
+                </p>
+
+                <a href="#contact" class="btn">
+                    Join Us
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+
+        <h2 class="section-title">
+            Contact <span>Us</span>
+        </h2>
+
+        <div class="contact-box">
+
+            <form onsubmit="sendMessage(event)">
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Your Name"
+                    required
+                >
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Your Email"
+                    required
+                >
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="Phone Number"
+                    required
+                >
+
+                <textarea
+                    id="message"
+                    placeholder="Your Message"
+                    required
+                ></textarea>
+
+                <button type="submit">
+                    Send Message
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 <span>PowerFit Gym</span> |
+            All Rights Reserved
+        </p>
+
+        <p>
+            Train Hard 💪 Stay Strong 🔥
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        function sendMessage(event) {
+
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+
+            alert(
+                "Thank you " + name +
+                "! Your message has been submitted."
+            );
+
+        }
+
+    </script>
+
+</body>
+</html>
